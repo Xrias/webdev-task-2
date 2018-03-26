@@ -16,10 +16,10 @@ module.exports = class PlaceController {
 
             return;
         }
-        res.status(400).send('Description is empty');
+        res.status(400);
     }
 
-    static clear(res) {
+    static clear(req, res) {
         Place.clear();
         res.send('OK');
     }
@@ -32,7 +32,7 @@ module.exports = class PlaceController {
 
             return;
         }
-        res.status(400).send('Id is empty');
+        res.status(400);
     }
 
     static findPlace(req, res) {
@@ -42,7 +42,7 @@ module.exports = class PlaceController {
 
             return;
         }
-        res.status(400).send('Description is empty');
+        res.status(400);
     }
 
     static editPlace(req, res) {
@@ -53,7 +53,7 @@ module.exports = class PlaceController {
 
             return;
         }
-        res.status(400).send('Id is empty');
+        res.status(400);
     }
 
     static insertPlace(req, res) {
@@ -64,6 +64,6 @@ module.exports = class PlaceController {
 
             return;
         }
-        res.status(400).send('Id is empty');
+        res.status(400);
     }
 };
