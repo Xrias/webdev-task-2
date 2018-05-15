@@ -71,7 +71,7 @@ class Place {
 
     edit(id, desc, isVisited) {
         const index = this.findElemById(id);
-        if (index) {
+        if (index === 0 || index) {
             this.setDesc(index, desc);
             this.setIsVisited(index, isVisited);
         }
@@ -82,12 +82,13 @@ class Place {
     }
 
     setIsVisited(index, isVisited) {
-        store[index].isVisited = isVisited || store[index].isVisited;
+        store[index].isVisited = isVisited;
     }
 
-    insert({ id, indexTo }) {
+    insert(id, indexTo) {
         const indexFrom = this.findElemById(id);
-        if (indexFrom && indexTo <= store.length) {
+
+        if (indexFrom !== undefined && indexTo <= store.length) {
             const copy = {
                 desc: store[indexFrom].desc,
                 id: Number(id),

@@ -1,11 +1,17 @@
 'use strict';
 
+let store = [];
+
 const Place = require('../models/place');
 
 module.exports = class PlaceController {
     static listPlaces(req, res) {
         const { pageNumber, pageSize, sort } = req.body;
         res.json(Place.getList(pageNumber, pageSize, sort));
+    }
+
+    static options(req, res) {
+        res.sendStatus(200);
     }
 
     static addPlace(req, res) {
@@ -46,8 +52,9 @@ module.exports = class PlaceController {
     }
 
     static editPlace(req, res) {
-        const { id, desc, isVisited } = req.body;
-        if (req.body.id) {
+        const id = req.params.id;
+        const { desc, isVisited } = req.body;
+        if (id) {
             Place.edit(id, desc, isVisited);
             res.send('OK');
 
@@ -58,7 +65,7 @@ module.exports = class PlaceController {
 
     static insertPlace(req, res) {
         const { id, indexTo } = req.body;
-        if (req.body.id) {
+        if (req.body.id !== undefined) {
             Place.insert(id, indexTo);
             res.send('OK');
 

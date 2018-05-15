@@ -7,9 +7,12 @@ module.exports = app => {
     app.get('/', PlaceController.listPlaces);
     app.post('/', PlaceController.addPlace);
     app.delete('/', PlaceController.clear);
-    app.get('/places', PlaceController.findPlace);
+    app.options('/', PlaceController.options);
+    app.post('/places', PlaceController.findPlace);
     app.delete('/places', PlaceController.deletePlace);
-    app.put('/places', PlaceController.editPlace);
-    app.post('/places', PlaceController.insertPlace);
+    app.put('/places', PlaceController.insertPlace);
+    app.options('/places', PlaceController.options);
+    app.post('/places/:id', PlaceController.editPlace);
+    app.options('/places/:id', PlaceController.options);
     app.all('*', error404);
 };
